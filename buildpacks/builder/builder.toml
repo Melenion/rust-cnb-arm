@@ -1,0 +1,49 @@
+description = "An ARM64 builder based on paketo-community/rust"
+
+[[buildpacks]]
+  id = "paketo-community/rustup-arm64"
+  version = "1.2.1"
+  uri = "docker://docker.io/paketo-community/rustup-arm64:1.2.1"
+
+[[buildpacks]]
+  id = "paketo-community/rust-dist-arm64"
+  version = "1.6.0"
+  uri = "docker://docker.io/paketo-community/rust-dist-arm64:1.6.0"
+
+[[buildpacks]]
+  id = "paketo-community/cargo-arm64"
+  version = "0.4.1"
+  uri = "docker://docker.io/paketo-community/cargo-arm64:0.4.1"
+
+[[buildpacks]]
+  id = "paketo-buildpacks/procfile-arm64"
+  version = "5.1.1"
+  uri = "docker://docker.io/paketo-buildpacks/procfile-arm64:5.1.1"
+
+[lifecycle]
+  uri = "https://github.com/buildpacks/lifecycle/releases/download/v0.13.5/lifecycle-v0.13.5+linux.arm64.tgz"
+
+[[order]]
+
+  [[order.group]]
+    id = "paketo-community/rustup-arm64"
+    version = "1.2.1"
+
+  [[order.group]]
+    id = "paketo-community/rust-dist-arm64"
+    version = "1.6.0"
+
+  [[order.group]]
+    id = "paketo-community/cargo-arm64"
+    version = "0.4.1"
+
+  [[order.group]]
+    id = "paketo-buildpacks/procfile-arm64"
+    optional = true
+    version = "5.1.1"
+
+[stack]
+  build-image = "melenion/stack-build:focal"
+  id = "com.melenion.stacks.focal"
+  run-image = "melenion/stack-run:focal"
+
